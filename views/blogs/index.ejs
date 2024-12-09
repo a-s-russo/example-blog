@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All blogs</title>
+  </head>
+  <body>
+    <h1>All blogs</h1>
+    <% if (blogs.length !== 0) { %>
+    <ul>
+      <% for (let blog of blogs) { %>
+      <li>
+        <%= blog.blogContent %>
+        <button onclick="location.href='/blogs/<%= blog.blogID %>'">
+          Details
+        </button>
+      </li>
+      <% } %>
+    </ul>
+    <% } else { %>
+    <h2>No blogs to display</h2>
+    <% } %>
+    <button onclick="location.href='/blogs/new'">Create new blog post</button>
+  </body>
+</html>

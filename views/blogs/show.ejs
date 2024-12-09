@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View blog</title>
+  </head>
+  <body>
+    <h1>Blog ID: <%= blog.blogID %></h1>
+    <h2><%= blog.blogContent %></h2>
+    <button onclick="location.href='/blogs'">Back to home page</button>
+    <button onclick="location.href='/blogs/<%= blog.blogID %>/edit'">
+      Edit blog
+    </button>
+    <form method="post" action="/blogs/<%= blog.blogID %>?_method=DELETE">
+      <button>Delete</button>
+    </form>
+  </body>
+</html>
