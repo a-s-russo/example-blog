@@ -1,16 +1,18 @@
-import express from "express";
+// Import modules
 import bodyParser from "body-parser";
+import express from "express";
+import methodOverride from "method-override";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { v4 as uuidv4 } from "uuid";
-import methodOverride from "method-override";
 
+// Define constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const app = express();
 const port = 3000;
 
+// Mimic persistent database
 let blogs = [
   {
     blogID: uuidv4(),
@@ -24,40 +26,43 @@ let blogs = [
   },
 ];
 
+// Set up middleware
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(methodOverride("_method"));
 
+// Set up EJS
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// View all blogs
 app.get("/blogs", (req, res) => {
   res.render("blogs/index", { blogs });
 });
 
+// Create a blog
 app.get("/blogs/new", (req, res) => {
   res.render("blogs/new");
 });
-
 app.post("/blogs", (req, res) => {
   const { blogContent } = req.body;
   blogs.push({ blogID: uuidv4(), blogContent: blogContent });
   res.redirect("/blogs");
 });
 
+// Read a blog
 app.get("/blogs/:blogID", (req, res) => {
   const { blogID } = req.params;
   const blog = blogs.find((blog) => blog.blogID === blogID);
   res.render("blogs/show", { blog });
 });
 
+// Update a blog
 app.get("/blogs/:blogID/edit", (req, res) => {
   const { blogID } = req.params;
   const blog = blogs.find((blog) => blog.blogID === blogID);
   res.render("blogs/edit", { blog });
 });
-
 app.patch("/blogs/:blogID", (req, res) => {
   const { blogID } = req.params;
   const foundBlog = blogs.find((blog) => blog.blogID === blogID);
@@ -66,12 +71,14 @@ app.patch("/blogs/:blogID", (req, res) => {
   res.redirect("/blogs");
 });
 
+// Delete a blog
 app.delete("/blogs/:blogID", (req, res) => {
   const { blogID } = req.params;
   blogs = blogs.filter((blog) => blog.blogID !== blogID);
   res.redirect("/blogs");
 });
 
+// Activate server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
