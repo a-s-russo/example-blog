@@ -35,6 +35,11 @@ app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// View landing page
+app.get("/", (req, res) => {
+  res.render("blogs/landing");
+});
+
 // View all blogs
 app.get("/blogs", (req, res) => {
   res.render("blogs/index", { blogs });
@@ -76,6 +81,11 @@ app.delete("/blogs/:blogID", (req, res) => {
   const { blogID } = req.params;
   blogs = blogs.filter((blog) => blog.blogID !== blogID);
   res.redirect("/blogs");
+});
+
+// View error page
+app.get("*", (req, res) => {
+  res.render("blogs/error");
 });
 
 // Activate server
