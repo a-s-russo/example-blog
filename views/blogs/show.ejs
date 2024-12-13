@@ -1,13 +1,38 @@
 <%- include("../partials/header.ejs", { title: "View blog"}) %>
 
-    <h1>Blog ID: <%= blog.blogID %></h1>
-    <h2><%= blog.blogContent %></h2>
-    <button onclick="location.href='/blogs'">Back to home page</button>
-    <button onclick="location.href='/blogs/<%= blog.blogID %>/edit'">
-      Edit blog
-    </button>
-    <form method="post" action="/blogs/<%= blog.blogID %>?_method=DELETE">
-      <button>Delete</button>
-    </form>
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-center py-3 mb-4">
+        <div class="row mb-1 justify-content-center">
+          <div class="col-md-12">
+            <div
+              class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+            >
+              <div class="col p-4 d-flex flex-column position-static">
+                <p class="card-text mb-auto"><%= blog.blogContent %></p>
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-primary mb-3"
+                onclick="location.href='/blogs/<%= blog.blogID %>/edit'"
+              >
+                Edit blog
+              </button>
+              <form
+                class="form-outline mb-2"
+                method="post"
+                action="/blogs/<%= blog.blogID %>?_method=DELETE"
+              >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+            <div class="mb-1 text-body-secondary text-wrap">
+              Blog ID: <%= blog.blogID %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <%- include("../partials/footer.ejs") %>

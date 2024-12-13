@@ -68,7 +68,7 @@ app.patch("/blogs/:blogID", (req, res) => {
   const foundBlog = blogs.find((blog) => blog.blogID === blogID);
   const newBlogContent = req.body.blogContent;
   foundBlog.blogContent = newBlogContent;
-  res.redirect("/blogs");
+  res.redirect("/blogs/" + blogID);
 });
 
 // Delete a blog

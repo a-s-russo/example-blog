@@ -1,11 +1,17 @@
 <%- include("../partials/header.ejs", { title: "Edit blog"}) %>
 
-    <h1>Edit blog</h1>
-    <form method="post" action="/blogs/<%= blog.blogID %>?_method=PATCH">
-      <textarea name="blogContent" id="" cols="30" , rows="10">
-        <%= blog.blogContent %>
-      </textarea>
-      <button>Save</button>
-    </form>
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-center py-3 mb-4">
+        <form method="post" action="/blogs/<%= blog.blogID %>?_method=PATCH">
+          <div class="form-outline mb-3">
+            <label class="form-label" for="blog">Edit blog below:</label>
+            <textarea class="form-control" id="blog" rows="10" cols="80" name="blogContent">
+              <%= blog.blogContent %>
+            </textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
 
 <%- include("../partials/footer.ejs") %>
