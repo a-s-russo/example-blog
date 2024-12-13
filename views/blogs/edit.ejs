@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit blog</title>
-  </head>
-  <body>
+<%- include("../partials/header.ejs", { title: "Edit blog"}) %>
+
     <h1>Edit blog</h1>
     <form method="post" action="/blogs/<%= blog.blogID %>?_method=PATCH">
       <textarea name="blogContent" id="" cols="30" , rows="10">
-<%= blog.blogContent %></textarea
-      >
+        <%= blog.blogContent %>
+      </textarea>
       <button>Save</button>
     </form>
-  </body>
-</html>
+
+<%- include("../partials/footer.ejs") %>

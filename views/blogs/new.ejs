@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New blog</title>
-  </head>
-  <body>
+<%- include("../partials/header.ejs", { title: "New blog"}) %>
+
     <h1>Make a new blog</h1>
     <form action="/blogs" method="post">
       <label for="blog">Blog text</label>
@@ -14,5 +8,5 @@
       <button>Post</button>
     </form>
     <button onclick="location.href='/blogs'">Back to home page</button>
-  </body>
-</html>
+
+<%- include("../partials/footer.ejs") %>
